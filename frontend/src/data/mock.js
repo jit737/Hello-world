@@ -88,41 +88,42 @@ export const projects = [
 export const experience = [
   {
     id: 1,
-    title: "Senior Backend Developer",
-    company: "TechCorp Solutions",
+    title: "Software Engineer",
+    company: "Current Company",
     duration: "2022 - Present",
-    location: "San Francisco, CA",
-    description: "Leading backend development for enterprise-level applications serving 100K+ users. Designed and implemented microservices architecture resulting in 40% improved performance.",
+    location: "Bangalore, India",
+    description: "Leading backend development for enterprise-level applications and client projects. Specialized in Node.js ecosystem with expertise in microservices architecture and system integrations.",
     achievements: [
-      "Architected microservices system handling 1M+ requests/day",
-      "Reduced API response time by 60% through optimization",
-      "Mentored 3 junior developers and established coding standards"
+      "Developed V-Sync vendor portal serving 12-member cross-functional team",
+      "Built CRM platform handling social media sales campaigns for 10-member team",
+      "Architected middleware solutions for Toyota-Boshoku SAP-ERP integration"
     ]
   },
   {
     id: 2,
-    title: "Backend Developer",
-    company: "StartupHub Inc.",
-    duration: "2021 - 2022",
+    title: "Backend Developer - Client Projects",
+    company: "Acsen Agriscience",
+    duration: "Aug 2023 - July 2024",
     location: "Remote",
-    description: "Developed scalable REST APIs and database solutions for a fast-growing fintech startup. Implemented CI/CD pipelines and automated testing.",
+    description: "Led development of 9 Java-based Android applications with centralized Node.js backend. Implemented real-time SAP integration and offline sync capabilities.",
     achievements: [
-      "Built payment processing system handling $2M+ transactions",
-      "Implemented automated testing reducing bugs by 50%",
-      "Set up Docker containerization for seamless deployments"
+      "Deployed 9 Android apps supporting core business operations",
+      "Built secure Admin Web Portal with RBAC and centralized control",
+      "Engineered QR code scanning modules with high accuracy",
+      "Enabled offline data capture for field operatives"
     ]
   },
   {
     id: 3,
-    title: "Junior Full Stack Developer",
-    company: "WebSolutions Agency",
-    duration: "2020 - 2021",
-    location: "Austin, TX",
-    description: "Started as full-stack developer working on client projects. Gradually specialized in backend development and API design.",
+    title: "Full Stack Developer",
+    company: "Previous Projects",
+    duration: "Jun 2022 - Mar 2023",
+    location: "Bangalore, India",
+    description: "Developed CRM-based platform and middleware solutions. Focused on RESTful API development and system integrations.",
     achievements: [
-      "Delivered 15+ client projects on time and within budget",
-      "Learned Node.js ecosystem and modern backend practices",
-      "Collaborated with frontend teams on API specifications"
+      "Created RESTful APIs for seamless client-server communication",
+      "Enhanced user experience with React.js front-end development",
+      "Optimized server performance through efficient API handling"
     ]
   }
 ];
