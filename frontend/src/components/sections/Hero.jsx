@@ -1,12 +1,20 @@
 import React from 'react';
 import { Download, Mail, Github, Linkedin } from 'lucide-react';
-import { personalInfo, socialLinks } from '../../data/mock';
+import { usePersonalInfo } from '../../hooks/useApi';
 import { Button } from '../ui/button';
+import LoadingSpinner from '../common/LoadingSpinner';
+import ErrorMessage from '../common/ErrorMessage';
 
 const Hero = () => {
+  const { data: personalInfo, loading, error, refetch } = usePersonalInfo();
+
   const handleDownloadResume = () => {
-    // Mock functionality - would download actual resume
-    window.open(personalInfo.resume, '_blank');
+    if (personalInfo?.resume_url) {
+      window.open(personalInfo.resume_url, '_blank');
+    } else {
+      // Fallback for demo
+      window.open('/resume.pdf', '_blank');
+    }
   };
 
   const handleContactClick = () => {
@@ -15,6 +23,30 @@ const Hero = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  if (loading) {
+    return (
+      <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <LoadingSpinner size="xl" />
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <ErrorMessage error={error} onRetry={refetch} />
+      </section>
+    );
+  }
+
+  if (!personalInfo) {
+    return (
+      <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <ErrorMessage error="Personal information not found" onRetry={refetch} />
+      </section>
+    );
+  }
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
@@ -61,7 +93,7 @@ const Hero = () => {
             {/* Social Links */}
             <div className="flex justify-center lg:justify-start space-x-6 animate-fade-in-delay-4">
               <a 
-                href={socialLinks.github} 
+                href={personalInfo.github_url} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-blue-400 transition-colors duration-300 transform hover:scale-110"
@@ -69,7 +101,7 @@ const Hero = () => {
                 <Github size={24} />
               </a>
               <a 
-                href={socialLinks.linkedin} 
+                href={personalInfo.linkedin_url} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-blue-400 transition-colors duration-300 transform hover:scale-110"
