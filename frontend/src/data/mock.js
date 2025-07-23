@@ -19,6 +19,7 @@ export const socialLinks = {
 export const skills = [
   { name: "Node.js", level: 95, icon: "🟢" },
   { name: "Express.js", level: 90, icon: "⚡" },
+  { name: "Nest.js", level: 85, icon: "🐱" },
   { name: "REST APIs", level: 95, icon: "🔗" },
   { name: "Microservices", level: 85, icon: "🔧" },
   { name: "PostgreSQL", level: 88, icon: "🐘" },
