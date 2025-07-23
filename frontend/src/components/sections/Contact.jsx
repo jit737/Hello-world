@@ -63,10 +63,10 @@ const Contact = () => {
 
   if (personalInfoLoading) {
     return (
-      <section id="contact" className="py-20 bg-gray-800/50">
+      <section id="contact" className="py-20 bg-gradient-to-br from-emerald-900/20 via-gray-800/50 to-gray-900/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-400 mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-400 mx-auto"></div>
             <p className="text-gray-400 mt-4">Loading contact information...</p>
           </div>
         </div>
@@ -76,19 +76,19 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: <Mail className="w-6 h-6 text-blue-400" />,
+      icon: <Mail className="w-6 h-6 text-emerald-400" />,
       label: "Email",
       value: personalInfo?.email || '',
       href: `mailto:${personalInfo?.email || ''}`
     },
     {
-      icon: <Phone className="w-6 h-6 text-blue-400" />,
+      icon: <Phone className="w-6 h-6 text-teal-400" />,
       label: "Phone",
       value: personalInfo?.phone || '',
       href: `tel:${personalInfo?.phone || ''}`
     },
     {
-      icon: <MapPin className="w-6 h-6 text-blue-400" />,
+      icon: <MapPin className="w-6 h-6 text-cyan-400" />,
       label: "Location",
       value: personalInfo?.location || '',
       href: null
@@ -106,24 +106,26 @@ const Contact = () => {
       name: 'LinkedIn',
       url: personalInfo?.linkedin_url,
       icon: <Linkedin className="w-6 h-6" />,
-      color: 'hover:text-blue-500'
+      color: 'hover:text-emerald-400'
     },
     {
       name: 'Twitter',
       url: personalInfo?.twitter_url,
       icon: <Twitter className="w-6 h-6" />,
-      color: 'hover:text-blue-400'
+      color: 'hover:text-cyan-400'
     }
   ].filter(platform => platform.url); // Only show platforms with URLs
 
   return (
-    <section id="contact" className="py-20 bg-gray-800/50">
+    <section id="contact" className="py-20 bg-gradient-to-br from-emerald-900/20 via-gray-800/50 to-gray-900/70">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-blue-400 bg-clip-text text-transparent">
-            Get In Touch
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-white via-emerald-100 to-teal-200 bg-clip-text text-transparent">
+              Get In Touch
+            </span>
           </h2>
-          <div className="w-24 h-1 bg-blue-400 mx-auto rounded-full mb-4"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-teal-400 mx-auto rounded-full mb-4"></div>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Ready to discuss your next project? Let's build something amazing together.
           </p>
@@ -147,7 +149,7 @@ const Contact = () => {
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
                 <div key={index} className="flex items-center space-x-4 group">
-                  <div className="bg-gray-800 p-3 rounded-lg group-hover:bg-gray-700 transition-colors">
+                  <div className="bg-gradient-to-br from-gray-800/70 to-emerald-900/30 p-3 rounded-lg group-hover:from-gray-700/70 group-hover:to-emerald-800/30 transition-all duration-300 border border-emerald-500/20 backdrop-blur-sm">
                     {info.icon}
                   </div>
                   <div>
@@ -155,7 +157,7 @@ const Contact = () => {
                     {info.href ? (
                       <a 
                         href={info.href}
-                        className="text-white hover:text-blue-400 transition-colors font-medium"
+                        className="text-white hover:text-emerald-400 transition-colors font-medium"
                       >
                         {info.value}
                       </a>
@@ -178,7 +180,7 @@ const Contact = () => {
                       href={platform.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`p-3 bg-gray-800 rounded-lg text-gray-400 ${platform.color} transition-all duration-300 transform hover:scale-110 hover:shadow-lg`}
+                      className={`p-3 bg-gradient-to-br from-gray-800/70 to-emerald-900/30 rounded-lg text-gray-400 ${platform.color} transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:shadow-emerald-500/20 backdrop-blur-sm border border-emerald-500/20`}
                       title={platform.name}
                     >
                       {platform.icon}
@@ -190,7 +192,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <Card className="bg-gray-800/70 border-gray-700">
+          <Card className="bg-gradient-to-br from-gray-800/70 to-emerald-900/20 border-emerald-500/30 backdrop-blur-sm">
             <CardContent className="p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
@@ -205,7 +207,7 @@ const Contact = () => {
                       required
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="bg-gray-700 border-gray-600 text-white focus:border-blue-400 focus:ring-blue-400"
+                      className="bg-gray-700/50 border-emerald-500/30 text-white focus:border-emerald-400 focus:ring-emerald-400 backdrop-blur-sm"
                       placeholder="Your full name"
                     />
                   </div>
@@ -220,7 +222,7 @@ const Contact = () => {
                       required
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="bg-gray-700 border-gray-600 text-white focus:border-blue-400 focus:ring-blue-400"
+                      className="bg-gray-700/50 border-emerald-500/30 text-white focus:border-emerald-400 focus:ring-emerald-400 backdrop-blur-sm"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -237,7 +239,7 @@ const Contact = () => {
                     required
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className="bg-gray-700 border-gray-600 text-white focus:border-blue-400 focus:ring-blue-400"
+                    className="bg-gray-700/50 border-emerald-500/30 text-white focus:border-emerald-400 focus:ring-emerald-400 backdrop-blur-sm"
                     placeholder="What's this about?"
                   />
                 </div>
@@ -253,7 +255,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={5}
-                    className="bg-gray-700 border-gray-600 text-white focus:border-blue-400 focus:ring-blue-400 resize-none"
+                    className="bg-gray-700/50 border-emerald-500/30 text-white focus:border-emerald-400 focus:ring-emerald-400 resize-none backdrop-blur-sm"
                     placeholder="Tell me about your project or how I can help you..."
                   />
                 </div>
@@ -261,7 +263,7 @@ const Contact = () => {
                 <Button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 font-semibold transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white py-3 font-semibold transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-lg hover:shadow-emerald-500/25"
                 >
                   {isSubmitting ? (
                     <>
