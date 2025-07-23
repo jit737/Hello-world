@@ -1,5 +1,12 @@
 /* Custom animations and styles for portfolio */
 
+/* Dot pattern background */
+.bg-dots-pattern {
+  background-image: radial-gradient(circle, #334155 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.1;
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
