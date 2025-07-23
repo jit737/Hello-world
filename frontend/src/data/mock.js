@@ -35,42 +35,52 @@ export const skills = [
 export const projects = [
   {
     id: 1,
-    title: "E-Commerce Microservices Platform",
-    description: "Built a scalable e-commerce backend using Node.js microservices architecture with Docker containerization and CI/CD pipeline.",
-    technologies: ["Node.js", "Express.js", "PostgreSQL", "Docker", "Jenkins", "AWS"],
-    githubUrl: "https://github.com/alexjohnson/ecommerce-microservices",
-    liveUrl: "https://ecommerce-api.alexjohnson.dev",
+    title: "V-Sync (Vendor Portal)",
+    description: "A comprehensive vendor onboarding platform enabling vendors to register, verify, and offer services/products. Features role-based access control, dynamic workflows, and real-time notifications.",
+    technologies: ["React.js", "Node.js", "Express.js", "Knex.js", "PostgreSQL"],
+    githubUrl: "https://github.com/jit737/v-sync-vendor-portal",
+    liveUrl: "https://v-sync.jitmohan.dev",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop",
     featured: true
   },
   {
     id: 2,
-    title: "Real-time Chat API",
-    description: "Developed a high-performance real-time messaging system using WebSockets, Redis for caching, and MongoDB for persistence.",
-    technologies: ["Node.js", "Socket.io", "Redis", "MongoDB", "JWT"],
-    githubUrl: "https://github.com/alexjohnson/realtime-chat-api",
-    liveUrl: "https://chat-api.alexjohnson.dev",
+    title: "Sales and Marketing CRM",
+    description: "CRM-based platform enabling product sales through social media and user campaigns with seamless server-client communication through RESTful APIs.",
+    technologies: ["React.js", "Node.js", "Express.js", "Knex.js", "PostgreSQL"],
+    githubUrl: "https://github.com/jit737/sales-marketing-crm",
+    liveUrl: "https://crm.jitmohan.dev",
     image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=500&h=300&fit=crop",
     featured: true
   },
   {
     id: 3,
-    title: "Task Management REST API",
-    description: "Created a comprehensive task management system with user authentication, role-based access control, and automated testing.",
-    technologies: ["Node.js", "Express.js", "MySQL", "Jest", "Swagger"],
-    githubUrl: "https://github.com/alexjohnson/task-management-api",
-    liveUrl: "https://tasks-api.alexjohnson.dev",
+    title: "Middleware Integration (Toyota-Boshoku)",
+    description: "Designed middleware for seamless data integration between SAP and ERP systems with automated connection recovery and optimized server performance.",
+    technologies: ["Node.js", "Express.js", "PostgreSQL", "SAP Integration"],
+    githubUrl: "https://github.com/jit737/toyota-middleware",
+    liveUrl: "https://middleware.jitmohan.dev",
     image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop",
     featured: false
   },
   {
     id: 4,
-    title: "Payment Gateway Integration",
-    description: "Integrated multiple payment providers with webhook handling, transaction logging, and comprehensive error management.",
-    technologies: ["Node.js", "Stripe API", "PayPal SDK", "PostgreSQL", "Docker"],
-    githubUrl: "https://github.com/alexjohnson/payment-gateway",
-    liveUrl: "https://payments.alexjohnson.dev",
+    title: "Mobile App Backend (Acsen Agriscience)",
+    description: "Centralized Node.js backend supporting 9 Android applications with real-time SAP integration, QR code scanning, and offline sync capabilities.",
+    technologies: ["Node.js", "Express.js", "PostgreSQL", "SAP Integration", "Android"],
+    githubUrl: "https://github.com/jit737/acsen-mobile-backend",
+    liveUrl: "https://acsen-api.jitmohan.dev",
     image: "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?w=500&h=300&fit=crop",
+    featured: true
+  },
+  {
+    id: 5,
+    title: "Admin Web Portal",
+    description: "Secure admin portal for managing user authentication, roles, permissions, and centralized control over mobile applications with enterprise-grade security.",
+    technologies: ["React.js", "Node.js", "Express.js", "PostgreSQL", "RBAC"],
+    githubUrl: "https://github.com/jit737/admin-web-portal",
+    liveUrl: "https://admin.jitmohan.dev",
+    image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=500&h=300&fit=crop",
     featured: false
   }
 ];
