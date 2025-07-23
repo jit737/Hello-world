@@ -1,18 +1,45 @@
 import React, { useState } from 'react';
 import { ExternalLink, Github, Star } from 'lucide-react';
-import { projects } from '../../data/mock';
 import { Card, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
+import { useProjects } from '../../hooks/useApi';
 
 const Projects = () => {
   const [filter, setFilter] = useState('all');
+  const { data: allProjects, loading, error } = useProjects(false);
+  const { data: featuredProjects } = useProjects(true);
   
   const filteredProjects = filter === 'all' 
-    ? projects 
+    ? allProjects || []
     : filter === 'featured' 
-    ? projects.filter(p => p.featured)
-    : projects;
+    ? featuredProjects || []
+    : allProjects || [];
+
+  if (loading) {
+    return (
+      <section id="projects" className="py-20 bg-gray-800/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-400 mx-auto"></div>
+            <p className="text-gray-400 mt-4">Loading projects...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="projects" className="py-20 bg-gray-800/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-red-400">Error loading projects: {error}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="projects" className="py-20 bg-gray-800/50">
@@ -58,12 +85,12 @@ const Projects = () => {
             >
               <div className="relative overflow-hidden">
                 <img 
-                  src={project.image} 
+                  src={project.image_url} 
                   alt={project.title}
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                {project.featured && (
+                {project.is_featured && (
                   <div className="absolute top-4 right-4 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-semibold flex items-center">
                     <Star size={12} className="mr-1" />
                     Featured
@@ -97,7 +124,7 @@ const Projects = () => {
                     variant="outline" 
                     size="sm"
                     className="flex-1 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-gray-900 transition-all duration-200"
-                    onClick={() => window.open(project.githubUrl, '_blank')}
+                    onClick={() => window.open(project.github_url, '_blank')}
                   >
                     <Github size={16} className="mr-2" />
                     Code
@@ -105,7 +132,7 @@ const Projects = () => {
                   <Button 
                     size="sm"
                     className="flex-1 bg-blue-600 hover:bg-blue-700 text-white transition-all duration-200"
-                    onClick={() => window.open(project.liveUrl, '_blank')}
+                    onClick={() => window.open(project.live_url, '_blank')}
                   >
                     <ExternalLink size={16} className="mr-2" />
                     Demo
@@ -121,7 +148,7 @@ const Projects = () => {
           <Button 
             variant="outline"
             className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-gray-900 px-8 py-3 font-semibold transition-all duration-300"
-            onClick={() => window.open('https://github.com/alexjohnson', '_blank')}
+            onClick={() => window.open('https://github.com/jit737', '_blank')}
           >
             <Github className="mr-2" size={20} />
             View All Projects on GitHub

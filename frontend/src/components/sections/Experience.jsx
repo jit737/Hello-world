@@ -1,9 +1,37 @@
 import React from 'react';
 import { Calendar, MapPin, CheckCircle } from 'lucide-react';
-import { experience } from '../../data/mock';
 import { Card, CardContent } from '../ui/card';
+import { useExperience, useStats } from '../../hooks/useApi';
 
 const Experience = () => {
+  const { data: experience, loading, error } = useExperience();
+  const { data: stats } = useStats();
+
+  if (loading) {
+    return (
+      <section id="experience" className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-400 mx-auto"></div>
+            <p className="text-gray-400 mt-4">Loading experience...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="experience" className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-red-400">Error loading experience: {error}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="experience" className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,7 +50,7 @@ const Experience = () => {
           <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-400 via-blue-500 to-blue-600 transform md:-translate-x-0.5"></div>
 
           <div className="space-y-12">
-            {experience.map((exp, index) => (
+            {experience?.map((exp, index) => (
               <div 
                 key={exp.id} 
                 className={`relative flex items-center ${
@@ -86,11 +114,15 @@ const Experience = () => {
         {/* Career Progression Stats */}
         <div className="mt-16 grid md:grid-cols-3 gap-8 text-center">
           <div className="bg-gray-800/50 rounded-lg p-6 border border-gray-700">
-            <div className="text-3xl font-bold text-blue-400 mb-2">4+</div>
+            <div className="text-3xl font-bold text-blue-400 mb-2">
+              {stats?.years_experience || '4+'}
+            </div>
             <div className="text-gray-400">Years in Backend Development</div>
           </div>
           <div className="bg-gray-800/50 rounded-lg p-6 border border-gray-700">
-            <div className="text-3xl font-bold text-blue-400 mb-2">5+</div>
+            <div className="text-3xl font-bold text-blue-400 mb-2">
+              {stats?.total_projects || '5+'}
+            </div>
             <div className="text-gray-400">Major Projects Completed</div>
           </div>
           <div className="bg-gray-800/50 rounded-lg p-6 border border-gray-700">

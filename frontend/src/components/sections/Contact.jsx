@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
-import { personalInfo, socialLinks } from '../../data/mock';
 import { Card, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { useToast } from '../../hooks/use-toast';
+import { usePersonalInfo } from '../../hooks/useApi';
+import { contactApi } from '../../services/api';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +17,9 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  
+  // Get personal info from API
+  const { data: personalInfo, loading: personalInfoLoading } = usePersonalInfo();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -29,9 +33,8 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Mock form submission - in real app would send to backend
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const result = await contactApi.submit(formData);
       
       toast({
         title: "Message Sent Successfully!",
@@ -39,6 +42,7 @@ const Contact = () => {
         variant: "default"
       });
       
+      // Clear form
       setFormData({
         name: '',
         email: '',
@@ -46,6 +50,7 @@ const Contact = () => {
         message: ''
       });
     } catch (error) {
+      console.error('Contact form submission error:', error);
       toast({
         title: "Error",
         description: "Failed to send message. Please try again.",
@@ -56,23 +61,36 @@ const Contact = () => {
     }
   };
 
+  if (personalInfoLoading) {
+    return (
+      <section id="contact" className="py-20 bg-gray-800/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-400 mx-auto"></div>
+            <p className="text-gray-400 mt-4">Loading contact information...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   const contactInfo = [
     {
       icon: <Mail className="w-6 h-6 text-blue-400" />,
       label: "Email",
-      value: personalInfo.email,
-      href: `mailto:${personalInfo.email}`
+      value: personalInfo?.email || '',
+      href: `mailto:${personalInfo?.email || ''}`
     },
     {
       icon: <Phone className="w-6 h-6 text-blue-400" />,
       label: "Phone",
-      value: personalInfo.phone,
-      href: `tel:${personalInfo.phone}`
+      value: personalInfo?.phone || '',
+      href: `tel:${personalInfo?.phone || ''}`
     },
     {
       icon: <MapPin className="w-6 h-6 text-blue-400" />,
       label: "Location",
-      value: personalInfo.location,
+      value: personalInfo?.location || '',
       href: null
     }
   ];
@@ -80,23 +98,23 @@ const Contact = () => {
   const socialPlatforms = [
     {
       name: 'GitHub',
-      url: socialLinks.github,
+      url: personalInfo?.github_url,
       icon: <Github className="w-6 h-6" />,
       color: 'hover:text-gray-300'
     },
     {
       name: 'LinkedIn',
-      url: socialLinks.linkedin,
+      url: personalInfo?.linkedin_url,
       icon: <Linkedin className="w-6 h-6" />,
       color: 'hover:text-blue-500'
     },
     {
       name: 'Twitter',
-      url: socialLinks.twitter,
+      url: personalInfo?.twitter_url,
       icon: <Twitter className="w-6 h-6" />,
       color: 'hover:text-blue-400'
     }
-  ];
+  ].filter(platform => platform.url); // Only show platforms with URLs
 
   return (
     <section id="contact" className="py-20 bg-gray-800/50">
@@ -150,23 +168,25 @@ const Contact = () => {
             </div>
 
             {/* Social Links */}
-            <div>
-              <h4 className="text-lg font-semibold text-white mb-4">Follow Me</h4>
-              <div className="flex space-x-4">
-                {socialPlatforms.map((platform) => (
-                  <a
-                    key={platform.name}
-                    href={platform.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`p-3 bg-gray-800 rounded-lg text-gray-400 ${platform.color} transition-all duration-300 transform hover:scale-110 hover:shadow-lg`}
-                    title={platform.name}
-                  >
-                    {platform.icon}
-                  </a>
-                ))}
+            {socialPlatforms.length > 0 && (
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-4">Follow Me</h4>
+                <div className="flex space-x-4">
+                  {socialPlatforms.map((platform) => (
+                    <a
+                      key={platform.name}
+                      href={platform.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`p-3 bg-gray-800 rounded-lg text-gray-400 ${platform.color} transition-all duration-300 transform hover:scale-110 hover:shadow-lg`}
+                      title={platform.name}
+                    >
+                      {platform.icon}
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Contact Form */}
