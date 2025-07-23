@@ -17,19 +17,19 @@ export const socialLinks = {
 };
 
 export const skills = [
-  { name: "Node.js", level: 95, icon: "🟢" },
-  { name: "Express.js", level: 90, icon: "⚡" },
-  { name: "Nest.js", level: 85, icon: "🐱" },
-  { name: "REST APIs", level: 95, icon: "🔗" },
-  { name: "Microservices", level: 85, icon: "🔧" },
-  { name: "PostgreSQL", level: 88, icon: "🐘" },
-  { name: "MySQL", level: 85, icon: "🗄️" },
-  { name: "MongoDB", level: 82, icon: "🍃" },
+  { name: "Node.js", level: 80, icon: "🟢" },
+  { name: "Express.js", level: 85, icon: "⚡" },
+  { name: "Nest.js", level: 70, icon: "🐱" },
+  { name: "REST APIs", level: 90, icon: "🔗" },
+  { name: "Microservices", level: 75, icon: "🔧" },
+  { name: "PostgreSQL", level: 80, icon: "🐘" },
+  { name: "MySQL", level: 80, icon: "🗄️" },
+  { name: "MongoDB", level: 85, icon: "🍃" },
   { name: "Docker", level: 80, icon: "🐳" },
   { name: "Jenkins", level: 75, icon: "🔨" },
-  { name: "Git", level: 92, icon: "📝" },
-  { name: "AWS", level: 78, icon: "☁️" },
-  { name: "Postman", level: 85, icon: "📮" }
+  { name: "Git", level: 90, icon: "📝" },
+  { name: "AWS", level: 75, icon: "☁️" },
+  { name: "Postman", level: 80, icon: "📮" }
 ];
 
 export const projects = [
