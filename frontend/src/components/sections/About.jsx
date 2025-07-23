@@ -1,9 +1,14 @@
 import React from 'react';
 import { Code, Server, Database, Cloud } from 'lucide-react';
-import { personalInfo } from '../../data/mock';
+import { usePersonalInfo, useStats } from '../../hooks/useApi';
 import { Card, CardContent } from '../ui/card';
+import LoadingSpinner from '../common/LoadingSpinner';
+import ErrorMessage from '../common/ErrorMessage';
 
 const About = () => {
+  const { data: personalInfo, loading: infoLoading, error: infoError, refetch: refetchInfo } = usePersonalInfo();
+  const { data: stats, loading: statsLoading, error: statsError, refetch: refetchStats } = useStats();
+
   const highlights = [
     {
       icon: <Server className="w-8 h-8 text-blue-400" />,
@@ -26,6 +31,42 @@ const About = () => {
       description: "AWS deployment, containerization, and CI/CD pipelines"
     }
   ];
+
+  if (infoLoading || statsLoading) {
+    return (
+      <section id="about" className="py-20 bg-gray-800/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <LoadingSpinner size="xl" className="py-20" />
+        </div>
+      </section>
+    );
+  }
+
+  if (infoError || statsError) {
+    return (
+      <section id="about" className="py-20 bg-gray-800/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ErrorMessage 
+            error={infoError || statsError} 
+            onRetry={() => {
+              refetchInfo();
+              refetchStats();
+            }} 
+          />
+        </div>
+      </section>
+    );
+  }
+
+  if (!personalInfo) {
+    return (
+      <section id="about" className="py-20 bg-gray-800/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ErrorMessage error="Personal information not found" onRetry={refetchInfo} />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="about" className="py-20 bg-gray-800/50">
@@ -73,11 +114,11 @@ const About = () => {
             {/* Stats */}
             <div className="grid grid-cols-2 gap-6 py-6">
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-400 mb-2">4+</div>
+                <div className="text-3xl font-bold text-blue-400 mb-2">{stats?.years_experience || 4}+</div>
                 <div className="text-gray-400">Years Experience</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-400 mb-2">5+</div>
+                <div className="text-3xl font-bold text-blue-400 mb-2">{stats?.total_projects || 5}+</div>
                 <div className="text-gray-400">Projects Completed</div>
               </div>
             </div>
