@@ -4,8 +4,8 @@ export const personalInfo = {
   title: "Software Engineer",
   tagline: "Building scalable backend systems with modern technologies",
   bio: "Passionate backend developer with 4+ years of experience in designing and developing robust, scalable server-side applications. Specialized in Node.js ecosystem with expertise in microservices architecture, API development, and cloud technologies.",
-  email: "jitmohan.raj@email.com",
-  phone: "+91 (555) 123-4567",
+  email: "mohanjeet737@gmail.com",
+  phone: "+91 7992244318",
   location: "Bangalore, India",
   resume: "/resume.pdf"
 };
