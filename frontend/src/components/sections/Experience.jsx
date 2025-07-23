@@ -90,12 +90,12 @@ const Experience = () => {
             <div className="text-gray-400">Years in Backend Development</div>
           </div>
           <div className="bg-gray-800/50 rounded-lg p-6 border border-gray-700">
-            <div className="text-3xl font-bold text-blue-400 mb-2">3</div>
-            <div className="text-gray-400">Companies Worked With</div>
+            <div className="text-3xl font-bold text-blue-400 mb-2">5+</div>
+            <div className="text-gray-400">Major Projects Completed</div>
           </div>
           <div className="bg-gray-800/50 rounded-lg p-6 border border-gray-700">
-            <div className="text-3xl font-bold text-blue-400 mb-2">100K+</div>
-            <div className="text-gray-400">Users Served by My Applications</div>
+            <div className="text-3xl font-bold text-blue-400 mb-2">50+</div>
+            <div className="text-gray-400">APIs Developed</div>
           </div>
         </div>
       </div>
