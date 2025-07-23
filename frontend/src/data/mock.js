@@ -1,19 +1,19 @@
 // Mock data for portfolio
 export const personalInfo = {
-  name: "Alex Johnson",
-  title: "Senior Node.js Backend Developer",
+  name: "Jitmohan Raj",
+  title: "Software Engineer",
   tagline: "Building scalable backend systems with modern technologies",
   bio: "Passionate backend developer with 4+ years of experience in designing and developing robust, scalable server-side applications. Specialized in Node.js ecosystem with expertise in microservices architecture, API development, and cloud technologies.",
-  email: "alex.johnson@email.com",
-  phone: "+1 (555) 123-4567",
-  location: "San Francisco, CA",
+  email: "jitmohan.raj@email.com",
+  phone: "+91 (555) 123-4567",
+  location: "Bangalore, India",
   resume: "/resume.pdf"
 };
 
 export const socialLinks = {
-  github: "https://github.com/alexjohnson",
-  linkedin: "https://linkedin.com/in/alex-johnson-dev",
-  twitter: "https://twitter.com/alexjohnson_dev"
+  github: "https://github.com/jit737",
+  linkedin: "https://www.linkedin.com/in/jitmohan-raj-65ba898b/",
+  twitter: "https://twitter.com/jitmohan_dev"
 };
 
 export const skills = [
