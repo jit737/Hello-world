@@ -59,7 +59,7 @@ const Skills = () => {
           <div className="text-center">
             <h3 className="text-xl font-bold text-blue-400 mb-4">Backend Frameworks</h3>
             <div className="flex flex-wrap justify-center gap-2">
-              {['Express.js', 'Fastify', 'Koa.js', 'NestJS'].map((tech) => (
+              {['Express.js', 'Nest.js', 'Fastify', 'Koa.js'].map((tech) => (
                 <span key={tech} className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-sm border border-gray-700 hover:border-blue-400 transition-colors">
                   {tech}
                 </span>
